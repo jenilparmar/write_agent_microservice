@@ -1,18 +1,13 @@
 package com.alwriter.ContentGeneratorAgent.controller;
 
-
-import java.util.ArrayList;
-import java.util.List;
-public class WriteRequest {
+public  class CombinedRequest {
     private String topic;
-    private String idea;
     private String platform;
 
-    public WriteRequest() {}
+    public CombinedRequest() {}
+
     public String getTopic() { return topic; }
     public void setTopic(String topic) { this.topic = topic; }
-    public String getIdea() { return idea; }
-    public void setIdea(String idea) { this.idea = idea; }
     public String getPlatform() { return platform; }
     public void setPlatform(String platform) { this.platform = platform; }
 }
