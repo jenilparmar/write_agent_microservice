@@ -22,6 +22,7 @@ public class WebClientConfig implements WebFluxConfigurer {
                         "https://cnvrt-lab-danish-work.vercel.app",
                         "http://localhost:3000",
                         "http://localhost:5173",
+                        "http://localhost:8081",
                         "https://hoppscotch.io"
                 )
                 .allowedMethods("*")
