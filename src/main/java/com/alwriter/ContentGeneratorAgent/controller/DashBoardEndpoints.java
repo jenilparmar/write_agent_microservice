@@ -1,16 +1,16 @@
 package com.alwriter.ContentGeneratorAgent.controller;
 
+import com.alwriter.ContentGeneratorAgent.dto.PinProjectInputFormat;
 import com.alwriter.ContentGeneratorAgent.entity.Project;
 import com.alwriter.ContentGeneratorAgent.entity.User;
 import com.alwriter.ContentGeneratorAgent.service.FindProjectInputFormat;
 import com.alwriter.ContentGeneratorAgent.service.ProjectService;
 import com.alwriter.ContentGeneratorAgent.service.UserService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/dashboard")
@@ -37,6 +37,16 @@ public class DashBoardEndpoints {
         return new FindProjectOutputFormat()
                 .setPinnedProjects(pinnedProjects)
                 .setProjectList(projectList);
+
+    }
+
+    @PatchMapping("/{projectId}/pin")
+    public ResponseEntity<Void> pinProject(
+            @PathVariable UUID projectId,
+            @RequestParam boolean pinned
+    ) {
+        projectService.pinProject(projectId, pinned);
+        return ResponseEntity.noContent().build();
     }
 
 }

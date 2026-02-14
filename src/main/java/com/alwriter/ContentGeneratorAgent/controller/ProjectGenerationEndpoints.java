@@ -1,0 +1,65 @@
+package com.alwriter.ContentGeneratorAgent.controller;
+
+import com.alwriter.ContentGeneratorAgent.dto.GenerateProjectRequest;
+import com.alwriter.ContentGeneratorAgent.entity.*;
+import com.alwriter.ContentGeneratorAgent.repository.GeneratedPostRepository;
+import com.alwriter.ContentGeneratorAgent.repository.ProjectRepository;
+import com.alwriter.ContentGeneratorAgent.service.UserService;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
+
+@RestController
+@RequestMapping("/projects")
+public class ProjectGenerationEndpoints {
+
+    private final UserService userService;
+    private final ProjectRepository projectRepository;
+    private final GeneratedPostRepository generatedPostRepository;
+
+    public ProjectGenerationEndpoints(UserService userService,
+                                      ProjectRepository projectRepository,
+                                      GeneratedPostRepository generatedPostRepository) {
+        this.userService = userService;
+        this.projectRepository = projectRepository;
+        this.generatedPostRepository = generatedPostRepository;
+    }
+
+    @PostMapping("/generate")
+    @Transactional
+    public Project createProjectWithGeneration(
+            @RequestBody GenerateProjectRequest request
+    ) {
+
+        // 1️⃣ Find user
+        User user = userService.findUser(request.getEmail());
+
+        // 2️⃣ Create Project
+        Project project = new Project();
+        project.setUserId(user.getId());
+        project.setTitle(request.getTopic());
+        project.setTopic(request.getTopic());
+        project.setHook(request.getHook());
+        project.setPlatform(request.getPlatform());
+        project.setStatus(ProjectStatus.READY);
+
+        project = projectRepository.save(project);
+
+        // 3️⃣ Create GeneratedPost
+        GeneratedPost post = new GeneratedPost();
+        post.setProjectId(project.getId());
+        post.setSource(GenerationSource.AI);
+        post.setPrompt(request.getTopic());
+        post.setContent(request.getGeneratedContent());
+        post.setVersion(request.getVersion() > 0 ? request.getVersion() : 1);
+
+        post = generatedPostRepository.save(post);
+
+        // 4️⃣ Update project current_generation_id
+        project.setCurrentGenerationId(post.getId());
+        projectRepository.save(project);
+
+        return project;
+    }
+}
