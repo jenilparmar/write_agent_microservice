@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface ProjectRepository extends JpaRepository<Project, UUID> {
@@ -26,4 +27,6 @@ public interface ProjectRepository extends JpaRepository<Project, UUID> {
     WHERE p.id = :projectId
 """)
     int updatePinnedStatus(UUID projectId, boolean pinned);
+
+    Optional<Project> findById(UUID projectId);
 }

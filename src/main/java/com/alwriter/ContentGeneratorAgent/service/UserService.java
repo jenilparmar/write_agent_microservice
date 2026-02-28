@@ -20,7 +20,5 @@ public class UserService {
         return  user;
     }
 
-    public List<Project> findProject(User user){
-        return List.of();
-    }
+
 }

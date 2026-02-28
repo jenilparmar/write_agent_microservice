@@ -1,6 +1,7 @@
 package com.alwriter.ContentGeneratorAgent.entity;
 
 import jakarta.persistence.*;
+
 import java.time.Instant;
 import java.util.UUID;
 
@@ -14,14 +15,24 @@ public class Project {
 
     @Column(nullable = false)
     private UUID userId;
+    @Column(nullable = true , columnDefinition = "TEXT")
+    private String summary_promt;
+
+    public String getSummary_promt() {
+        return summary_promt;
+    }
+
+    public void setSummary_promt(String summary_promt) {
+        this.summary_promt = summary_promt;
+    }
 
     @Column(nullable = false)
     private String title;
 
-    @Column()
+    @Column(columnDefinition = "TEXT")
     private String topic;
 
-    @Column()
+    @Column(columnDefinition = "TEXT")
     private String hook;
 
     @Enumerated(EnumType.STRING)

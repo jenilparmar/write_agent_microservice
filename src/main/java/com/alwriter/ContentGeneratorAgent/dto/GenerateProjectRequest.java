@@ -2,6 +2,8 @@ package com.alwriter.ContentGeneratorAgent.dto;
 
 import com.alwriter.ContentGeneratorAgent.entity.Platform;
 
+import java.util.UUID;
+
 public class GenerateProjectRequest {
 
     private String email;
@@ -9,6 +11,24 @@ public class GenerateProjectRequest {
     private String hook;
     private Platform platform;
     private String generatedContent;
+    private UUID projectId;
+    private String summary_prompt;
+
+    public String getSummary_prompt() {
+        return summary_prompt;
+    }
+
+    public void setSummary_prompt(String summary_prompt) {
+        this.summary_prompt = summary_prompt;
+    }
+
+    public UUID getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(UUID projectId) {
+        this.projectId = projectId;
+    }
 
     public String getEmail() {
         return email;
