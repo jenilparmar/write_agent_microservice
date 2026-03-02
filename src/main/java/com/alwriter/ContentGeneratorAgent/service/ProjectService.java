@@ -198,7 +198,7 @@ public class ProjectService {
         post.setPrompt(req.getTopic());
         post.setContent(req.getGeneratedContent());
         post.setVersion(latestVersion + 1); // Auto-increment
-
+        post.setImage_hash(req.getImageHash());
         post = generatedPostRepo.save(post);
 
         // 5. Link and Final Save

@@ -1,6 +1,8 @@
 package com.alwriter.ContentGeneratorAgent.entity;
 
 import jakarta.persistence.*;
+import org.w3c.dom.Text;
+
 import java.time.Instant;
 import java.util.UUID;
 
@@ -11,6 +13,17 @@ public class GeneratedPost {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    @Column(name = "image_hash", columnDefinition = "TEXT")
+        private String imageHash;
+
+    public String getImage_hash() {
+
+        return this.imageHash;
+    }
+
+    public void setImage_hash(String image_hash) {
+        this.imageHash = image_hash;
+    }
 
     @Column(nullable = false)
     private UUID projectId;

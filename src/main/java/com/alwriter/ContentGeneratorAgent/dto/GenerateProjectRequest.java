@@ -13,9 +13,17 @@ public class GenerateProjectRequest {
     private String generatedContent;
     private UUID projectId;
     private String summary_prompt;
-
+    private  String ImageHash  ;
     public String getSummary_prompt() {
         return summary_prompt;
+    }
+
+    public String getImageHash() {
+        return ImageHash;
+    }
+
+    public void setImageHash(String imageHash) {
+        ImageHash = imageHash;
     }
 
     public void setSummary_prompt(String summary_prompt) {
