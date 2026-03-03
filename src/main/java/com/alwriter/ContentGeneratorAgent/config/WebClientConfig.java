@@ -18,14 +18,7 @@ public class WebClientConfig implements WebFluxConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins(
-                        "https://cnvrt-lab-danish-work.vercel.app",
-                        "http://localhost:3000",
-                        "http://localhost:5173",
-                        "http://localhost:8081",
-                        "https://social-hub-dashboard.vercel.app/",
-                        "https://hoppscotch.io"
-                )
+                .allowedOriginPatterns("*")
                 .allowedMethods("*")
                 .allowedHeaders("*")
                 .allowCredentials(true);
