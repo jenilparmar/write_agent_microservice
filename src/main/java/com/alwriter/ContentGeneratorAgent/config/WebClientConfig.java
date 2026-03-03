@@ -25,8 +25,7 @@ public class WebClientConfig implements WebFluxConfigurer {
                         "http://localhost:8081",
                         "https://social-hub-dashboard.vercel.app/",
                         "https://hoppscotch.io",
-                        "https://visionary.gupta-kartik.xyz/",
-                        "https://social-hub-dashboard.vercel.app/"
+                        "https://visionary.gupta-kartik.xyz/"
                 )
                 .allowedMethods("*")
                 .allowedHeaders("*")
