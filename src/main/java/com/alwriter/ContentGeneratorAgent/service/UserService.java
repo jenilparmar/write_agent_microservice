@@ -6,6 +6,7 @@ import com.alwriter.ContentGeneratorAgent.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -20,5 +21,8 @@ public class UserService {
         return  user;
     }
 
+    public int updateUserPreference(UUID userId , String userPreferneces) {
+        return userrepo.updatePreferenceByUserId(userId , userPreferneces);
+    }
 
 }

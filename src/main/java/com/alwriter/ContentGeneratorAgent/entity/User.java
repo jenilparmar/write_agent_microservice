@@ -15,6 +15,17 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
+
+    private String preferences;
+
+    public String getPreferences() {
+        return preferences;
+    }
+
+    public void setPreferences(String preferences) {
+        this.preferences = preferences;
+    }
+
     @Column(nullable = false)
     private String name;
 
