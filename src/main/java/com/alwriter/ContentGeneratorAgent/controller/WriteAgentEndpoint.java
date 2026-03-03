@@ -26,7 +26,7 @@ public class WriteAgentEndpoint {
 
     public WriteAgentEndpoint(WebClient.Builder webClientBuilder,
                               @Value("${external.write.service.url}") String serverUrl) {
-        System.out.println("SERVER URL =------------------> " + serverUrl);
+
         HttpClient httpClient = HttpClient.create()
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 30_000)
                 .responseTimeout(Duration.ofMinutes(15))
